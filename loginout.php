@@ -14,11 +14,12 @@ function logIn()
         $_SESSION['loggedIn'] = true; // la variable va persister au fur et à mesure de la navigation
         $_SESSION['isAdmin'] = $ecole->admin;
         $_SESSION['login'] = $ecole->login;
+        $_SESSION['nom'] = $ecole->nom;
         redirectWithPost("index.php?page=espacebds", array('tip' => 'success', 'msg' => "Vous êtes maintenant connecté !"), true);
     }
     else
     {
-        unset($_SESSION['loggedIn']); // on ne veut même pas set cette variable
+        unset($_SESSION['loggedIn']);
         redirectWithPost("index.php?page=espacebds", array('tip' => 'error', 'msg' => "Votre login ou votre mot de passe est invalide !"), true);
     }
 }
@@ -27,5 +28,6 @@ function logOut()
 {
     unset($_SESSION['loggedIn']);
     unset($_SESSION['isAdmin']);
-    unset($_SESSION['mailUser']);
+    unset($_SESSION['login']);
+    unset($_SESSION['nom']);
 }

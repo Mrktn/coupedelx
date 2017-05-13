@@ -1,3 +1,4 @@
+
 <div class="jumbotron jumbo-header">
     <h1 class="jumbo-title">Espace BDS</h1>
 </div>
@@ -8,12 +9,15 @@
 </div>
 
 <?php
+require_once('classes/sport.php');
+require_once('classes/joueur.php');
+print_r($_POST);
 echo '<div class="container-fluid">';
 
 // Si je suis logué
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 {
-    echo '<h1>Inscriptions</h1>';
+    echo '<h1>Inscriptions (' . $_SESSION['nom'] . ')</h1>';
 
     // Je suis logué, mais je suis l'admin
     if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'])
@@ -24,11 +28,62 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
     // Je suis logué et prêt à procéder aux inscriptions
     else
     {
-        echo '<p>Pas implémenté !</p>';
+        echo "Pour chacun des sports suivants, vous pouvez inscrire une équipe. Le premier membre d'une équipe est le <b>capitaine</b> : pensez à renseigner son numéro de téléphone afin que l'équipe soit joignable durant la compétition !<br/><br/>";
+        echo '<form data-toggle="validator" method="post" action="index.php?page=espacebds&todo=updateInscription">';
+
+        $sports = sport::getSports();
+
+        foreach($sports as $s)
+        {
+            echo '<div class="panel-group">
+              <div class="panel panel-default">
+              <div class="panel-heading">
+              <h2 class="panel-title">
+              <a data-toggle="collapse" href="#collapse' . $s->sportID . '">' . $s->nom . '</a>
+              </h2>
+              </div><div id="collapse' . $s->sportID . '" class="panel-collapse collapse">
+              <div class="panel-body">';
+            //echo '<h2>' . $s->nom . '</h2>';
+            echo "<p>Vous pouvez inscrire <b>au maximum " . $s->maxjoueurs . " joueurs</b>.<br/>";
+
+            $joueurs = joueur::getJoueursInscrits($_SESSION['login'], $s->nom);
+            $i = 0;
+
+            foreach($joueurs as $j)
+            {
+                $i += 1;
+                echo "<div class='form-group'><h3>Joueur $i</h3><label name='" . "j$i-" . $s->sportID . "-prenom'>Prénom</label>";
+                echo "<input style='width:400px' class='form-control' type='text' name='" . "j$i-" . $s->sportID . "-prenom' id='" . "j$i-" . $s->sportID . "-prenom' value='" . htmlspecialchars($j->prenom) . "'>";
+                echo "<label name='" . "j$i-" . $s->sportID . "-nom'>Nom</label>";
+                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-nom' name='" . "j$i-" . $s->sportID . "-nom' value='" . htmlspecialchars($j->nom) . "'>";
+                echo "<label name='" . "j$i-" . $s->sportID . "-mail'>Adresse mail</label>";
+                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-mail' name='" . "j$i-" . $s->sportID . "-mail' value='" . htmlspecialchars($j->mail) . "'><br/>";
+                echo '</div>';
+            }
+
+            while($i < $s->maxjoueurs)
+            {
+                $i += 1;
+                echo "<div class='form-group'> <h3>Joueur $i</h3><label name='" . "j$i-" . $s->sportID . "-prenom'>Prénom</label>";
+                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-prenom' name='" . "j$i-" . $s->sportID . "-prenom' placeholder='Prénom'>";
+                echo "<label name='" . "j$i-" . $s->sportID . "-nom'>Nom</label>";
+                echo "<input style='width:400px' class='form-control' type='text' name='" . "j$i-" . $s->sportID . "-nom' name='" . "j$i-" . $s->sportID . "-nom' placeholder='Nom'>";
+                echo "<label name='" . "j$i-" . $s->sportID . "-mail'>Adresse mail</label>";
+                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-mail' name='" . "j$i-" . $s->sportID . "-mail' placeholder='Adresse mail'><br/>";
+                echo '</div>';
+            }
+            
+            echo '</div></div>
+              </div>
+              </div>';
+        }
+
+        echo '<br/><button type="submit">Valider</button>';
+        echo "</form>";
     }
     ?>
     <form action="index.php?page=espacebds&todo=logout" method="post">
-    <button style="margin-right:10px" name="logout" type="submit" class="btn btn-default"> Déconnexion </button>
+        <button style="margin-right:10px" name="logout" type="submit" class="btn btn-default">Déconnexion</button>
     </form><?php
 }
 

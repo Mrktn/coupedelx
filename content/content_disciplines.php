@@ -57,7 +57,7 @@
         <div id="avironF" style="margin: 0 auto;" class="togglable">
             <h1 style="color:rgb(20,20,40)">Aviron indoor Féminin</h1>
             <div style="max-width:500px; max-height:300px; margin: 0 auto;">
-                <img src="img/sections/avironMphoto.jpeg" style="width:100%"/><br/><br/>
+                <img src="img/sections/avironFphoto.jpg" style="width:100%"/><br/><br/>
                 <b>Genre:</b> féminin<br/>
                 <b>Modalités:</b> deux épreuves de relais 4x400m<br/>
                 <b>Lieu:</b> bâtiment Bienvenüe (salle CSX)
