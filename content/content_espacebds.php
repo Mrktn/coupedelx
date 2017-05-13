@@ -1,17 +1,17 @@
-
 <div class="jumbotron jumbo-header">
     <h1 class="jumbo-title">Espace BDS</h1>
 </div>
 
-<div class="container-fluid">
-    Cet espace vous permet, une fois connecté, de gérer l'inscription de vos équipes dans les différents sports.
+<div class="container-fluid">Cet espace vous permet, une fois connecté, de gérer l'inscription de vos équipes dans les différents sports.
     <hr class="featurette-divider" style="margin-bottom:10px;margin-top:20px">
 </div>
 
 <?php
 require_once('classes/sport.php');
 require_once('classes/joueur.php');
-print_r($_POST);
+/* echo '<pre>';
+  print_r($_POST);
+  echo '</pre>'; */
 echo '<div class="container-fluid">';
 
 // Si je suis logué
@@ -29,9 +29,10 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
     else
     {
         echo "Pour chacun des sports suivants, vous pouvez inscrire une équipe. Le premier membre d'une équipe est le <b>capitaine</b> : pensez à renseigner son numéro de téléphone afin que l'équipe soit joignable durant la compétition !<br/><br/>";
-        echo '<form data-toggle="validator" method="post" action="index.php?page=espacebds&todo=updateInscription">';
+        echo '<form data-toggle="validator" method="post" action="index.php?page=espacebds&todo=updateInscription" class="form-horizontal">';
 
         $sports = sport::getSports();
+
 
         foreach($sports as $s)
         {
@@ -52,27 +53,84 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
             foreach($joueurs as $j)
             {
                 $i += 1;
-                echo "<div class='form-group'><h3>Joueur $i</h3><label name='" . "j$i-" . $s->sportID . "-prenom'>Prénom</label>";
-                echo "<input style='width:400px' class='form-control' type='text' name='" . "j$i-" . $s->sportID . "-prenom' id='" . "j$i-" . $s->sportID . "-prenom' value='" . htmlspecialchars($j->prenom) . "'>";
-                echo "<label name='" . "j$i-" . $s->sportID . "-nom'>Nom</label>";
-                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-nom' name='" . "j$i-" . $s->sportID . "-nom' value='" . htmlspecialchars($j->nom) . "'>";
-                echo "<label name='" . "j$i-" . $s->sportID . "-mail'>Adresse mail</label>";
-                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-mail' name='" . "j$i-" . $s->sportID . "-mail' value='" . htmlspecialchars($j->mail) . "'><br/>";
-                echo '</div>';
+                /* echo "<div class='form-group'><h3>Joueur $i</h3><label name='" . "j$i-" . $s->sportID . "-prenom'>Prénom</label>";
+                  echo "<input style='width:400px' class='form-control' type='text' name='" . "j$i-" . $s->sportID . "-prenom' id='" . "j$i-" . $s->sportID . "-prenom' value='" . htmlspecialchars($j->prenom) . "'>";
+                  echo "<label name='" . "j$i-" . $s->sportID . "-nom'>Nom</label>";
+                  echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-nom' name='" . "j$i-" . $s->sportID . "-nom' value='" . htmlspecialchars($j->nom) . "'>";
+                  echo "<label name='" . "j$i-" . $s->sportID . "-mail'>Adresse mail</label>";
+                  echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-mail' name='" . "j$i-" . $s->sportID . "-mail' value='" . htmlspecialchars($j->mail) . "'><br/>";
+                  echo '</div>'; */
+
+                echo "<h3>Joueur $i</h3>";
+
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Prénom</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-prenom" name="j' . $i . '-' . $s->sportID . '-prenom" placeholder="Prénom" class="form-control" value="'. htmlspecialchars($j->prenom) .'" type="text">
+                          </div>
+                        </div>
+                      </div>';
+
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Nom</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-nom" name="j' . $i . '-' . $s->sportID . '-nom" placeholder="Nom" class="form-control" value="'. htmlspecialchars($j->nom) .'" type="text">
+                          </div>
+                        </div>
+                      </div>';
+
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Adresse mail</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-mail" name="j' . $i . '-' . $s->sportID . '-mail" placeholder="Adresse mail" class="form-control" value="'. htmlspecialchars($j->mail) .'" type="text">
+                          </div>
+                        </div>
+                      </div>';
             }
 
             while($i < $s->maxjoueurs)
             {
                 $i += 1;
-                echo "<div class='form-group'> <h3>Joueur $i</h3><label name='" . "j$i-" . $s->sportID . "-prenom'>Prénom</label>";
-                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-prenom' name='" . "j$i-" . $s->sportID . "-prenom' placeholder='Prénom'>";
-                echo "<label name='" . "j$i-" . $s->sportID . "-nom'>Nom</label>";
-                echo "<input style='width:400px' class='form-control' type='text' name='" . "j$i-" . $s->sportID . "-nom' name='" . "j$i-" . $s->sportID . "-nom' placeholder='Nom'>";
-                echo "<label name='" . "j$i-" . $s->sportID . "-mail'>Adresse mail</label>";
-                echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-mail' name='" . "j$i-" . $s->sportID . "-mail' placeholder='Adresse mail'><br/>";
-                echo '</div>';
+
+                echo "<h3>Joueur $i</h3>";
+
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Prénom</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-prenom" name="j' . $i . '-' . $s->sportID . '-prenom" placeholder="Prénom" class="form-control" type="text">
+                          </div>
+                        </div>
+                      </div>';
+
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Nom</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-nom" name="j' . $i . '-' . $s->sportID . '-nom" placeholder="Nom" class="form-control" type="text">
+                          </div>
+                        </div>
+                      </div>';
+
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Adresse mail</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-mail" name="j' . $i . '-' . $s->sportID . '-mail" placeholder="Adresse mail" class="form-control"  type="text">
+                          </div>
+                        </div>
+                      </div>';
             }
-            
+
             echo '</div></div>
               </div>
               </div>';

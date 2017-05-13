@@ -34,6 +34,36 @@ if(isset($_GET['todo']) && $_GET['todo'] == 'logout')
     session_destroy();
 }
 
+if(isset($_GET['todo']) && $_GET['todo'] == 'updateInscription')
+{
+    $bysports = array();
+    // j3-avironF-nom
+    foreach($_POST as $id => $v)
+    {
+        if(!stringIsBlank($v))
+        {
+            $pieces = explode("-", $id);
+
+            if(!piecesSanityCheck($pieces))
+            {
+                redirectWithPost("index.php?page=espacebds", array('tip' => 'error', 'msg' => "Problème lors de l'évaluation des champs !"), true);
+            }
+
+            if(!isset($bysports[$pieces[1]]))
+                $bysports[$pieces[1]] = array();
+
+            if(!isset($bysports[$pieces[1]][$pieces[0]]))
+            {
+                $bysports[$pieces[1]][$pieces[0]] = array();
+            }
+
+            $bysports[$pieces[1]][$pieces[0]][$pieces[2]] = $v;
+        }
+    }
+
+    doInscription($bysports);
+}
+
 generateHeader();
 generateNavbar();
 

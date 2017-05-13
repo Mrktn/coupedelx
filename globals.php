@@ -20,3 +20,5 @@ $authorizedLoggedIn = array("index", "error", "placeholerloggedin", "info", "dis
 
 // $accessibleSimpleUser['une page d'admin'] = false
 $accessibleSimpleUser = array("index" => true, "register" => true, "error" => true, "info" => true, "manageShotguns" => false, "shotgunRecord" => true, "myShotguns" => true, "shotgunIt" => true, "createShotgun" => true,"myShotgunsReserves" => true, "changePassword" => true);
+
+$sportsID = array("avironF", "avironM", "badminton", "basketF", "basketM", "escalade", "escrime", "footF", "footM", "handF", "handM", "judo", "natation", "pompoms", "relais", "rugbyF", "rugbyM", "ultimate", "volleyF", "volleyM");

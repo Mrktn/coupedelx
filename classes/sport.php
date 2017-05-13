@@ -21,8 +21,25 @@ class sport
                 $a[] = $row;
             $stmt->closeCursor();
         }
-        
+
         return $a;
+    }
+
+    public static function getSportByID($sportID)
+    {
+        $dbh = DB::connect();
+        $stmt = $dbh->prepare("SELECT * FROM sport AS s WHERE s.sportID=?");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'sport');
+        $stmt->bindParam(1, $sportID);
+
+        if($stmt->execute())
+        {
+            while(($row = $stmt->fetch()))
+            {
+                $stmt->closeCursor();
+                return $row;
+            }
+        }
     }
 
 }
