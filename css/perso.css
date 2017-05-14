@@ -61,7 +61,16 @@ nav ul li a:hover {
     font-family: "Vollkorn";
 }
 
-tr.space > td
-{
-  padding-bottom: 15px;
+tr.space > td {
+    padding-bottom: 15px;
+}
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: rgb(30,30,50);
+    color: white;
+}
+
+input[type="text"] {
+    font-family:serif;
 }

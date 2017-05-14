@@ -36,7 +36,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 
         foreach($sports as $s)
         {
-            echo '<div class="panel-group">
+            echo '<div class="panel-group" style="padding-left:40px;padding-right:40px;padding-bottom:30px">
               <div class="panel panel-default">
               <div class="panel-heading">
               <h2 class="panel-title">
@@ -53,22 +53,15 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
             foreach($joueurs as $j)
             {
                 $i += 1;
-                /* echo "<div class='form-group'><h3>Joueur $i</h3><label name='" . "j$i-" . $s->sportID . "-prenom'>Prénom</label>";
-                  echo "<input style='width:400px' class='form-control' type='text' name='" . "j$i-" . $s->sportID . "-prenom' id='" . "j$i-" . $s->sportID . "-prenom' value='" . htmlspecialchars($j->prenom) . "'>";
-                  echo "<label name='" . "j$i-" . $s->sportID . "-nom'>Nom</label>";
-                  echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-nom' name='" . "j$i-" . $s->sportID . "-nom' value='" . htmlspecialchars($j->nom) . "'>";
-                  echo "<label name='" . "j$i-" . $s->sportID . "-mail'>Adresse mail</label>";
-                  echo "<input style='width:400px' class='form-control' type='text' id='" . "j$i-" . $s->sportID . "-mail' name='" . "j$i-" . $s->sportID . "-mail' value='" . htmlspecialchars($j->mail) . "'><br/>";
-                  echo '</div>'; */
 
-                echo "<h3>Joueur $i</h3>";
+                echo "<h3>Joueur $i" . ($i == 1 ? " (capitaine)" : "") . "</h3>";
 
                 echo '<div class="form-group">
                         <label class="col-md-4 control-label">Prénom</label>  
                         <div class="col-md-4 inputGroupContainer">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="j' . $i . '-' . $s->sportID . '-prenom" name="j' . $i . '-' . $s->sportID . '-prenom" placeholder="Prénom" class="form-control" value="'. htmlspecialchars($j->prenom) .'" type="text">
+                            <input id="j' . $i . '-' . $s->sportID . '-prenom" name="j' . $i . '-' . $s->sportID . '-prenom" placeholder="Prénom" class="form-control" value="' . htmlspecialchars($j->prenom) . '" type="text">
                           </div>
                         </div>
                       </div>';
@@ -78,7 +71,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
                         <div class="col-md-4 inputGroupContainer">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="j' . $i . '-' . $s->sportID . '-nom" name="j' . $i . '-' . $s->sportID . '-nom" placeholder="Nom" class="form-control" value="'. htmlspecialchars($j->nom) .'" type="text">
+                            <input id="j' . $i . '-' . $s->sportID . '-nom" name="j' . $i . '-' . $s->sportID . '-nom" placeholder="Nom" class="form-control" value="' . htmlspecialchars($j->nom) . '" type="text">
                           </div>
                         </div>
                       </div>';
@@ -88,7 +81,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
                         <div class="col-md-4 inputGroupContainer">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="j' . $i . '-' . $s->sportID . '-mail" name="j' . $i . '-' . $s->sportID . '-mail" placeholder="Adresse mail" class="form-control" value="'. htmlspecialchars($j->mail) .'" type="text">
+                            <input id="j' . $i . '-' . $s->sportID . '-mail" name="j' . $i . '-' . $s->sportID . '-mail" placeholder="Adresse mail" class="form-control" value="' . htmlspecialchars($j->mail) . '" type="text">
                           </div>
                         </div>
                       </div>';
@@ -98,7 +91,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
             {
                 $i += 1;
 
-                echo "<h3>Joueur $i</h3>";
+                echo "<h3>Joueur $i" . ($i == 1 ? " (capitaine)" : "") ."</h3>";
 
                 echo '<div class="form-group">
                         <label class="col-md-4 control-label">Prénom</label>  
@@ -136,7 +129,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
               </div>';
         }
 
-        echo '<br/><button type="submit">Valider</button>';
+        echo '<br/><button type="submit" style="background-color: rgb(20,20,40); color: white;border: none;cursor: pointer; width: 100%;padding: 14px 20px;margin: 8px 0">Valider</button>';
         echo "</form>";
     }
     ?>
@@ -163,13 +156,10 @@ input[type=text], input[type=password] {
 }
 
 button {
-    background-color: rgb(20,20,40);
-    color: white;
+    background-color: rgb(20,20,40); color: white;border: none;cursor: pointer; width: 100%;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+    
 }
 
 button:hover {
@@ -197,7 +187,7 @@ span.psw {
     <button type="submit">Connexion</button>
   </div>
 
-  <div class="container" style="background-color:#f1f1f1">
+  <div class="container" >
     <span class="psw"><a href="#">Je n\'ai pas d\'identifiants</a></span>
   </div>
 </form>';
