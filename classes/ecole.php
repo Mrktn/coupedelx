@@ -34,7 +34,7 @@ class ecole
     {
         $dbh = DB::connect();
 
-        $stmt = $dbh->prepare("SELECT * FROM ecole WHERE login=? AND mdp=?");
+        $stmt = $dbh->prepare("SELECT COUNT(*) FROM ecole WHERE login=? AND mdp=?");
         $stmt->bindParam(1, $login);
         $stmt->bindParam(2, $mdp);
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'ecole');
@@ -50,5 +50,4 @@ class ecole
         else
             return false;
     }
-
 }

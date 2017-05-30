@@ -35,6 +35,7 @@ function generateHeader()
             <!-- Custom styles for this template -->
             <link href="css/carousel.css" rel="stylesheet">
             <link href="css/perso.css" rel="stylesheet">
+            <link href="css/panel.css" rel="stylesheet">
             <link href="css/animate.css" rel="stylesheet">
 
             <!--jquery UI -->

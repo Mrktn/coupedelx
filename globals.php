@@ -1,13 +1,13 @@
 <?php
 
 // Quel est le titre à afficher dans la barre de navigation ?
-$title = array("index" => "Coupe de l'X 2017", "contact" => "Contact", "infos" => "Informations pratiques", "disciplines" => "Disciplines sportives", "espacebds" => "Espace BDS");
+$title = array("index" => "Coupe de l'X 2017", "contact" => "Contact", "infos" => "Informations pratiques", "disciplines" => "Disciplines sportives", "espacebds" => "Espace BDS", "admin" => "Administration");
 
 // Quel est le nom de chaque page dans la navbar ?
-$titleNavbar = array("index" => "Accueil", "disciplines" => "Disciplines", "infos" => "Informations pratiques", "espacebds" => "Espace BDS", "contact" => "Contact", "administration" => "Administrer", "myShotguns" => "Administrer");
+$titleNavbar = array("index" => "Accueil", "disciplines" => "Disciplines", "infos" => "Informations pratiques", "espacebds" => "Espace BDS", "contact" => "Contact", "admin" => "Administrer", "myShotguns" => "Administrer");
 
 
-$navbar = array("index", "disciplines", "infos", "espacebds", "contact", "administration");
+$navbar = array("index", "disciplines", "infos", "espacebds", "contact", "admin");
 
 // Quelles sont les pages qui requièrent d'être admin pour les voir ?
 $adminPages = array("administration");
