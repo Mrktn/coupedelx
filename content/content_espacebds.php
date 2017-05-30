@@ -166,7 +166,7 @@ button:hover {
     opacity: 0.8;
 }
 
-.container {
+.containerX {
     padding: 16px;
 }
 
@@ -177,7 +177,7 @@ span.psw {
 </style>";
     echo '<h1 style="color: rgb(20,20,40)">Connectez-vous !</h1>';
     echo '<form action="index.php?page=index&todo=login" method="post">
-  <div class="container">
+  <div class="container containerX">
     <label><b>Identifiant</b></label>
     <input type="text" placeholder="Identifiant" name="login" required><br/>
 

@@ -49,13 +49,14 @@ function generateHeader()
         <hr class="featurette-divider">
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="footer">
+            <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="col-md-4">
-                        <div class="center-block">
+                        <div class="center-block" style="padding-top:30px">
                             <div class="center-block" style="text-align:center">
-                                <p style="margin:auto; font-style:italic; font-size:15px">&copy; BDS Polytechnique, tous droits réservés</p>
+                                <p style="margin:auto; font-style:italic; font-size:14px">&copy; BDS Polytechnique, tous droits réservés</p>
                             </div>
                             <div>
                                 <a href='https://www.facebook.com/Bds-Polytechnique-640858446045589'><img src="img/logobds.png" alt="Logo BDS Polytechnique" style="max-width:256px; max-height:144px;width: auto;height: auto;" class="img-responsive center-block"/></a>
@@ -66,7 +67,7 @@ function generateHeader()
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <p>.</p>
+                        
                     </div>
                     <div class="col-md-4">
                         <div class="center-block">
@@ -80,9 +81,10 @@ function generateHeader()
                     </div>
                 </div>
             </div>
+            </div>
         </footer>
 
-    </div><!-- /.container -->
+    <!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
