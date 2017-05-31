@@ -50,4 +50,25 @@ class ecole
         else
             return false;
     }
+
+    // Est-ce que telle école a inscrit au moins un joueur dans un sport donné ?
+    public static function aInscritDans($ec, $sp)
+    {
+        $dbh = DB::connect();
+
+        $stmt = $dbh->prepare("SELECT COUNT(*) FROM joueur AS j WHERE j.sport=? AND j.ecole=?");
+        $stmt->bindParam(1, $sp);
+        $stmt->bindParam(2, $ec);
+
+        if($stmt->execute())
+        {
+            if($stmt->fetchColumn() > 0)
+                return true;
+            else
+                return false;
+        }
+
+        return false;
+    }
+
 }

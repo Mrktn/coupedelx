@@ -18,6 +18,9 @@ $dbh = DB::connect();
 require('globals.php');
 require('utils.php');
 require('loginout.php');
+require('ecoles.php');
+require('classes/paiement.php');
+require('classes/validation.php');
 
 //traitement des contenus de formulaires
 //on regarde s'il y a quelque chose à faire 'todo' , si oui on regarde si c'est un login ou un loggout et on execute le cas échéant

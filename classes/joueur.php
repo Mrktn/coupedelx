@@ -18,7 +18,7 @@ class joueur
         $dbh = DB::connect();
         $a = array();
 
-        $stmt = $dbh->prepare("SELECT j.* FROM sport AS s,joueur AS j,ecole AS e WHERE e.login=? AND s.nom=? AND j.sport=s.id AND j.ecole=e.id ORDER BY j.numero");
+        $stmt = $dbh->prepare("SELECT j.* FROM sport AS s,joueur AS j,ecole AS e WHERE e.login=? AND s.sportID=? AND j.sport=s.id AND j.ecole=e.id ORDER BY j.numero");
         $stmt->bindParam(1, $loginEcole);
         $stmt->bindParam(2, $nomSport);
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'joueur');

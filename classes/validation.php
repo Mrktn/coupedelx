@@ -1,17 +1,18 @@
 <?php
 
 // Un enregistrement = telle école a payé pour tel sport
-class paiement
+class validation
 {
     public $id;
     public $sport;
     public $ecole;
 
-    public static function aPayePour($ec, $sp)
+    // Est-ce que l'école en question a validé son équipe dans le sport donné ?
+    public static function aValideEquipe($ec, $sp)
     {
         $dbh = DB::connect();
 
-        $stmt = $dbh->prepare("SELECT * FROM paiement AS p WHERE p.sport=? AND p.ecole=?");
+        $stmt = $dbh->prepare("SELECT * FROM validation AS v WHERE v.sport=? AND v.ecole=?");
 
         $stmt->bindParam(1, $sp);
         $stmt->bindParam(2, $ec);
