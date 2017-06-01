@@ -47,7 +47,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
             //echo '<h2>' . $s->nom . '</h2>';
             echo "<p>Vous pouvez inscrire <b>au maximum " . $s->maxjoueurs . " joueurs</b>.<br/>";
 
-            $joueurs = joueur::getJoueursInscrits($_SESSION['login'], $s->nom);
+            $joueurs = joueur::getJoueursInscrits($_SESSION['login'], $s->sportID);
             $i = 0;
 
             foreach($joueurs as $j)

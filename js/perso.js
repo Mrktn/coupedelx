@@ -1,23 +1,62 @@
 $(document).ready(function () {
 
     $(".boutonNonPaye").click(function () {
-        $(".boutonTout").removeClass("active");
-        $(".boutonNonPaye").addClass("active");
 
-        if ($(".boutonNonValide").hasClass("active")) {
-            $(".nonValide.nonPaye").show();
+        // If we're releasing the button
+        if ($(".boutonNonPaye").hasClass("active"))
+        {
+            $(".boutonNonPaye").removeClass("active");
+            $(".paye").show();
+
+            // If the other is currently not pressed
+            if (!$(".boutonNonValide").hasClass("active"))
+            {
+                $(".boutonTout").addClass("active");
+            } else
+            {
+                $(".boutonTout").removeClass("active");
+                $(".valide").hide();
+            }
+            
+            
         }
-        $(".paye").hide();
+
+        // We're pressing the button
+        else
+        {
+            $(".boutonNonPaye").addClass("active");
+            $(".boutonTout").removeClass("active");
+            
+            $(".paye").hide();
+        }
     });
 
     $(".boutonNonValide").click(function () {
-        $(".boutonTout").removeClass("active");
-        $(".boutonNonValide").addClass("active");
+        // If we're releasing the button
+        if ($(".boutonNonValide").hasClass("active"))
+        {
+            $(".valide").show();
+            $(".boutonNonValide").removeClass("active");
 
-        if ($(".boutonNonPaye").hasClass("active")) {
-            $(".nonValide.nonPaye").show();
+            // If the other is currently not pressed
+            if (!$(".boutonNonPaye").hasClass("active"))
+            {
+                $(".boutonTout").addClass("active");
+            } else
+            {
+                $(".boutonTout").removeClass("active");
+                $(".paye").hide();
+            }
         }
-        $(".valide").hide();
+
+        // We're pressing the button
+        else
+        {
+            $(".boutonNonValide").addClass("active");
+            $(".boutonTout").removeClass("active");
+            
+            $(".valide").hide();
+        }
     });
 
     $(".boutonTout").click(function () {

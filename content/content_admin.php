@@ -47,12 +47,13 @@ if(!$ok)
                     echo '<div class="tab-pane fade ' . ($j == 1 ? "in active" : "") . '" id = "tab' . $j . 'default">';
                     echo '<h2>' . $nom . '</h2>';
 
-                    echo '<button type="button" class="boutonPanel boutonTout btn btn-primary active">Voir tout</button>';
-                    echo '<button type="button" class="boutonPanel boutonNonPaye btn btn-primary">Voir seulement non payés</button>';
+                    echo '<button style="margin-right: 10px" type="button" class="boutonPanel boutonTout btn btn-primary active">Voir tout</button>';
+                    echo '<button style="margin-right: 10px" type="button" class="boutonPanel boutonNonPaye btn btn-primary">Voir seulement non payés</button>';
                     echo '<button type="button" class="boutonPanel boutonNonValide btn btn-primary">Voir seulement non validés</button>';
 
-                    // 
                     echo '<div style="padding-top: 50px" class="panel-group">';
+
+
                     foreach($sports as $sp)
                     {
                         $tags = "";
@@ -60,8 +61,6 @@ if(!$ok)
 
                         if(ecole::aInscritDans($ec->id, $sp->id))
                         {
-                            $tags .= "rempli ";
-
                             if(!paiement::aPayePour($ec->id, $sp->id))
                             {
                                 $tags .= "nonPaye ";
@@ -83,31 +82,33 @@ if(!$ok)
                                 $tags .= "valide ";
                                 $myGlyphs .= '<span title="Cette équipe a été validée !" style="color:green; padding-left: 5px" class="glyphicon glyphicon-ok pull-right"></span>';
                             }
-                        }
-                        else
-                            $tags .= "hideme ";
 
-                        echo '<div class="' . $tags . ' panel panel-default" id="panel' . $login . $sp->sportID . '">';
-                        echo '<div style="padding-top: 10px; padding-bottom: 10px"  class="panel-heading">
+                            echo '<div class="' . $tags . ' panel panel-default" id="panel' . $login . $sp->sportID . '">';
+                            echo '<div style="padding-top: 10px; padding-bottom: 10px"  class="panel-heading">
                                         <h1 class="panel-title puretitre">
                                             <a data-toggle="collapse" data-target="#collapse' . $login . $sp->sportID . '" href="#collapse' . $login . $sp->sportID . '" class="noscroll"><span class="glyphicon glyphicon-chevron-down"></span>
                                                 ' . $sp->nom . ' </a>' . $myGlyphs .
-                        '</h1></div>';
+                            '</h1></div>';
 
-                        $sportifs = "";
-                        $fst = true;
-                        $sarray = joueur::getJoueursInscrits($ec->login, $sp->sportID);
-                        foreach($sarray as $ssp)
-                        {
-                            $sportifs .= '<li>' . ($fst ? '<b>' : '') . $ssp->prenom . ' ' . $ssp->nom . ($fst ? '</b>' : '') . '</li>';
-                            $fst = false;
-                        }
+                            $sportifs = "";
+                            $fst = true;
+                            $sarray = joueur::getJoueursInscrits($ec->login, $sp->sportID);
+                            foreach($sarray as $ssp)
+                            {
+                                $sportifs .= '<li>' . ($fst ? '<b>' : '') . $ssp->prenom . ' ' . $ssp->nom . ($fst ? '</b>' : '') . '</li>';
+                                $fst = false;
+                            }
 
-                        echo '<div id="collapse' . $login . $sp->sportID . '" class="panel-collapse collapse">
+                            echo '<div id="collapse' . $login . $sp->sportID . '" class="panel-collapse collapse">
                                         <div class="panel-body"><ul>' .
-                        $sportifs
-                        . '</ul></div>
-                                    </div></div>';
+                            $sportifs
+                            . '</ul>
+                            
+
+
+
+                        </div></div></div>';
+                        }
                     }
                     echo '</div></div>';
                     $j += 1;
