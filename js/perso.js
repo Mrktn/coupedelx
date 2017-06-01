@@ -62,7 +62,8 @@ $(document).ready(function () {
     $(".boutonTout").click(function () {
         $(".boutonNonValide").removeClass("active");
         $(".boutonNonPaye").removeClass("active");
-
+        
+        $(this).addClass("active");
 
         $(".valide").show();
         $(".paye").show();

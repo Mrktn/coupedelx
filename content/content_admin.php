@@ -64,26 +64,26 @@ if(!$ok)
                             if(!paiement::aPayePour($ec->id, $sp->id))
                             {
                                 $tags .= "nonPaye ";
-                                $myGlyphs .= '<span title="Cette équipe n\'a pas payé !" style="color:red; padding-left: 5px" class="glyphicon glyphicon-euro pull-right"></span>';
+                                $myGlyphs .= '<span title="Cette équipe n\'a pas payé !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:red; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
                             }
                             else
                             {
                                 $tags .= "paye ";
-                                $myGlyphs .= '<span title="Cette équipe a payé !" style="color:green; padding-left: 5px" class="glyphicon glyphicon-euro pull-right"></span>';
+                                $myGlyphs .= '<span title="Cette équipe a payé !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:green; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
                             }
 
                             if(!validation::aValideEquipe($ec->id, $sp->id))
                             {
                                 $tags .= "nonValide ";
-                                $myGlyphs .= '<span title="Il faut que vous validiez cette équipe pour finaliser l\'inscription !" style="color:red; padding-left: 5px" class="glyphicon glyphicon-remove pull-right"></span>';
+                                $myGlyphs .= '<span title="Il faut que vous validiez cette équipe pour finaliser l\'inscription !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:red; padding-left: 5px" class="glyphicon glyphicon-remove pull-right valideState"></span>';
                             }
                             else
                             {
                                 $tags .= "valide ";
-                                $myGlyphs .= '<span title="Cette équipe a été validée !" style="color:green; padding-left: 5px" class="glyphicon glyphicon-ok pull-right"></span>';
+                                $myGlyphs .= '<span title="Cette équipe a été validée !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:green; padding-left: 5px" class="glyphicon glyphicon-ok pull-right valideState"></span>';
                             }
 
-                            echo '<div class="' . $tags . ' panel panel-default" id="panel' . $login . $sp->sportID . '">';
+                            echo '<div sport="'.$sp->id.'" ecole="'.$ec->id.'" class="' . $tags . ' panel panel-default">';
                             echo '<div style="padding-top: 10px; padding-bottom: 10px"  class="panel-heading">
                                         <h1 class="panel-title puretitre">
                                             <a data-toggle="collapse" data-target="#collapse' . $login . $sp->sportID . '" href="#collapse' . $login . $sp->sportID . '" class="noscroll"><span class="glyphicon glyphicon-chevron-down"></span>
@@ -102,7 +102,7 @@ if(!$ok)
                             echo '<div id="collapse' . $login . $sp->sportID . '" class="panel-collapse collapse">
                                         <div class="panel-body"><ul>' .
                             $sportifs
-                            . '</ul>' . '<button type="button" ecole="' . $ec->id . '" sport=' . $sp->id . '" class="payeBouton btn btn-success">Confirmer le paiement</button>' .
+                            . '</ul>' . '<button type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="payeBouton btn btn-success">Confirmer le paiement</button>' .
                             '</div></div></div>';
                         }
                     }

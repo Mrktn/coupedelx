@@ -1,32 +1,5 @@
-
-/**
- * 
- * @type type
- * 
- * /$.notify({
- // options
- message: 'Hello World'
- }, {
- // settings
- type: 'danger'
- });
- * 
- * 
- * 
- * 
- * 
- * 
- */
-
 $(document).ready(function () {
-    $(".payeBouton").click();
-
-
-
-
-
-
-
+    
     $('body').on('click', '.payeBouton', function () {
         var monbouton = $(this);
         var ecole = $(this).attr("ecole");
@@ -48,6 +21,11 @@ $(document).ready(function () {
                 monbouton.addClass("btn-danger");
 
                 monbouton.text("Annuler le paiement");
+                
+                $("span[ecole="+ecole+"][sport="+sport+"].payeState").css('color', 'green');
+                
+                $("div[ecole="+ecole+"][sport="+sport+"].panel").removeClass("nonPaye");
+                $("div[ecole="+ecole+"][sport="+sport+"].panel").addClass("paye");
 
             } else
             {
@@ -82,6 +60,11 @@ $(document).ready(function () {
                 monbouton.addClass("btn-success");
 
                 monbouton.text("Confirmer le paiement");
+                
+                $("span[ecole="+ecole+"][sport="+sport+"].payeState").css('color', 'red');
+                
+                $("div[ecole="+ecole+"][sport="+sport+"].panel").removeClass("paye");
+                $("div[ecole="+ecole+"][sport="+sport+"].panel").addClass("nonPaye");
 
             } else
             {
