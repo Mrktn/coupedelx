@@ -102,12 +102,8 @@ if(!$ok)
                             echo '<div id="collapse' . $login . $sp->sportID . '" class="panel-collapse collapse">
                                         <div class="panel-body"><ul>' .
                             $sportifs
-                            . '</ul>
-                            
-
-
-
-                        </div></div></div>';
+                            . '</ul>' . '<button type="button" ecole="' . $ec->id . '" sport=' . $sp->id . '" class="payeBouton btn btn-success">Confirmer le paiement</button>' .
+                            '</div></div></div>';
                         }
                     }
                     echo '</div></div>';
@@ -121,6 +117,4 @@ if(!$ok)
     <script>$('.noscroll').click(function ($e) {
             $e.preventDefault();
         });
-
-        $('.hideme').hide();
     </script></div>

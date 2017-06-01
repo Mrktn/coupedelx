@@ -42,6 +42,7 @@ function generateHeader()
             <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
             
             <script src="js/perso.js"></script>
+            <script src="js/ajaxButtons.js"></script>
         </head>
         <?php
     }
