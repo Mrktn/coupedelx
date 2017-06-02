@@ -61,6 +61,9 @@ if(!$ok)
 
                         if(ecole::aInscritDans($ec->id, $sp->id))
                         {
+                            $aPaye = false;
+                            $estValide = false;
+                            
                             if(!paiement::aPayePour($ec->id, $sp->id))
                             {
                                 $tags .= "nonPaye ";
@@ -68,6 +71,7 @@ if(!$ok)
                             }
                             else
                             {
+                                $aPaye = true;
                                 $tags .= "paye ";
                                 $myGlyphs .= '<span title="Cette équipe a payé !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:green; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
                             }
@@ -79,6 +83,7 @@ if(!$ok)
                             }
                             else
                             {
+                                $estValide = true;
                                 $tags .= "valide ";
                                 $myGlyphs .= '<span title="Cette équipe a été validée !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:green; padding-left: 5px" class="glyphicon glyphicon-ok pull-right valideState"></span>';
                             }
@@ -102,8 +107,19 @@ if(!$ok)
                             echo '<div id="collapse' . $login . $sp->sportID . '" class="panel-collapse collapse">
                                         <div class="panel-body"><ul>' .
                             $sportifs
-                            . '</ul>' . '<button type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="payeBouton btn btn-success">Confirmer le paiement</button>' .
-                            '</div></div></div>';
+                            . '</ul>';
+                            
+                            if(!$aPaye)
+                                echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right payeBouton btn btn-success">Confirmer le paiement</button>';
+                            else // rends l'argent
+                                echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right unpayeBouton btn btn-danger">Annuler le paiement</button>';
+                            
+                            if(!$estValide)
+                                echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right valideBouton btn btn-success">Valider l\'inscription</button>';
+                            else
+                                echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right unvalideBouton btn btn-success">Annuler l\'inscription</button>';
+                            
+                            echo '</div></div></div>';
                         }
                     }
                     echo '</div></div>';

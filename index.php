@@ -67,7 +67,7 @@ if(isset($_GET['todo']) && $_GET['todo'] == 'updateInscription')
     doInscription($bysports);
 }
 
-if(isset($_GET['todo']) && (($_GET['todo'] == 'valider') || ($_GET['todo'] == 'unValider') || ($_GET['todo'] == 'aPaye') || ($_GET['todo'] == 'aUnpaye')))
+if(isset($_GET['todo']) && (($_GET['todo'] == 'valider') || ($_GET['todo'] == 'unValider') || ($_GET['todo'] == 'payer') || ($_GET['todo'] == 'unPayer')))
 {
     if(isset($_SESSION['login']) && $_SESSION['login'] == 'bdspolytechnique')
     {
