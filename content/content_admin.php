@@ -10,13 +10,6 @@ if(!$ok)
     <h1 class="jumbo-title">Administration</h1>
 </div>
 
-
-
-
-
-
-
-
 <div class="container-fluid">
     <div class = "panel with-nav-tabs panel-default">
         <div class = "panel-heading">
@@ -63,36 +56,36 @@ if(!$ok)
                         {
                             $aPaye = false;
                             $estValide = false;
-                            
+
                             if(!paiement::aPayePour($ec->id, $sp->id))
                             {
                                 $tags .= "nonPaye ";
-                                $myGlyphs .= '<span title="Cette équipe n\'a pas payé !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:red; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
+                                $myGlyphs .= '<span title="Cette équipe n\'a pas payé !" ecole="' . $ec->id . '" sport="' . $sp->id . '" style="color:red; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
                             }
                             else
                             {
                                 $aPaye = true;
                                 $tags .= "paye ";
-                                $myGlyphs .= '<span title="Cette équipe a payé !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:green; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
+                                $myGlyphs .= '<span title="Cette équipe a payé !" ecole="' . $ec->id . '" sport="' . $sp->id . '" style="color:green; padding-left: 5px" class="glyphicon glyphicon-euro pull-right payeState"></span>';
                             }
 
                             if(!validation::aValideEquipe($ec->id, $sp->id))
                             {
                                 $tags .= "nonValide ";
-                                $myGlyphs .= '<span title="Il faut que vous validiez cette équipe pour finaliser l\'inscription !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:red; padding-left: 5px" class="glyphicon glyphicon-remove pull-right valideState"></span>';
+                                $myGlyphs .= '<span title="Il faut que vous validiez cette équipe pour finaliser l\'inscription !" ecole="' . $ec->id . '" sport="' . $sp->id . '" style="color:red; padding-left: 5px" class="glyphicon glyphicon-remove pull-right valideState"></span>';
                             }
                             else
                             {
                                 $estValide = true;
                                 $tags .= "valide ";
-                                $myGlyphs .= '<span title="Cette équipe a été validée !" ecole="'.$ec->id.'" sport="'.$sp->id.'" style="color:green; padding-left: 5px" class="glyphicon glyphicon-ok pull-right valideState"></span>';
+                                $myGlyphs .= '<span title="Cette équipe a été validée !" ecole="' . $ec->id . '" sport="' . $sp->id . '" style="color:green; padding-left: 5px" class="glyphicon glyphicon-ok pull-right valideState"></span>';
                             }
 
-                            echo '<div sport="'.$sp->id.'" ecole="'.$ec->id.'" class="' . $tags . ' panel panel-default">';
+                            echo '<div sport="' . $sp->id . '" ecole="' . $ec->id . '" class="' . $tags . ' panel panel-default">';
                             echo '<div style="padding-top: 10px; padding-bottom: 10px"  class="panel-heading">
                                         <h1 class="panel-title puretitre">
                                             <a data-toggle="collapse" data-target="#collapse' . $login . $sp->sportID . '" href="#collapse' . $login . $sp->sportID . '" class="noscroll"><span class="glyphicon glyphicon-chevron-down"></span>
-                                                ' . $sp->nom . ' </a>' . $myGlyphs .
+                                                ' . htmlspecialchars($sp->nom) . ' </a>' . $myGlyphs .
                             '</h1></div>';
 
                             $sportifs = "";
@@ -100,7 +93,7 @@ if(!$ok)
                             $sarray = joueur::getJoueursInscrits($ec->login, $sp->sportID);
                             foreach($sarray as $ssp)
                             {
-                                $sportifs .= '<li>' . ($fst ? '<b>' : '') . $ssp->prenom . ' ' . $ssp->nom . ($fst ? '</b>' : '') . '</li>';
+                                $sportifs .= '<li>' . ($fst ? '<b>' : '') . htmlspecialchars($ssp->prenom) . ' ' . htmlspecialchars($ssp->nom) . ($fst ? '</b>' : '') . '</li>';
                                 $fst = false;
                             }
 
@@ -108,17 +101,17 @@ if(!$ok)
                                         <div class="panel-body"><ul>' .
                             $sportifs
                             . '</ul>';
-                            
+
                             if(!$aPaye)
                                 echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right payeBouton btn btn-success">Confirmer le paiement</button>';
                             else // rends l'argent
                                 echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right unpayeBouton btn btn-danger">Annuler le paiement</button>';
-                            
+
                             if(!$estValide)
                                 echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right valideBouton btn btn-success">Valider l\'inscription</button>';
                             else
-                                echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right unvalideBouton btn btn-success">Annuler l\'inscription</button>';
-                            
+                                echo '<button style="margin-left: 10px" type="button" ecole="' . $ec->id . '" sport="' . $sp->id . '" class="pull-right unvalideBouton btn btn-danger">Invalider l\'inscription</button>';
+
                             echo '</div></div></div>';
                         }
                     }

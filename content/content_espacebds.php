@@ -39,7 +39,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
             echo '<div class="panel-group" style="padding-left:40px;padding-right:40px;padding-bottom:30px">
               <div class="panel panel-default">
               <div class="panel-heading">
-              <h2 class="panel-title">
+              <h2 class="panel-title"><span class="glyphicon glyphicon-chevron-down"></span>
               <a data-toggle="collapse" href="#collapse' . $s->sportID . '">' . $s->nom . '</a>
               </h2>
               </div><div id="collapse' . $s->sportID . '" class="panel-collapse collapse">
@@ -85,6 +85,16 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
                           </div>
                         </div>
                       </div>';
+                
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Licence</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-licence" name="j' . $i . '-' . $s->sportID . '-licence" placeholder="Licence" class="form-control" value="' . htmlspecialchars($j->licence) . '" type="text">
+                          </div>
+                        </div>
+                      </div>';
             }
 
             while($i < $s->maxjoueurs)
@@ -119,6 +129,16 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
                           <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                             <input id="j' . $i . '-' . $s->sportID . '-mail" name="j' . $i . '-' . $s->sportID . '-mail" placeholder="Adresse mail" class="form-control"  type="text">
+                          </div>
+                        </div>
+                      </div>';
+                
+                echo '<div class="form-group">
+                        <label class="col-md-4 control-label">Licence</label>  
+                        <div class="col-md-4 inputGroupContainer">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="j' . $i . '-' . $s->sportID . '-licence" name="j' . $i . '-' . $s->sportID . '-licence" placeholder="Licence" class="form-control"  type="text">
                           </div>
                         </div>
                       </div>';

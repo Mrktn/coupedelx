@@ -55,5 +55,7 @@
 
     <br><br><br>
 
-    <h2></h2>
+    <div class="row">
+        <div class="center-block col-md-4" style="margin:auto; float:none"><img src="img/styx_diamant.png" width="50%"></div>
+    </div>
 </div>

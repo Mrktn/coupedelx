@@ -69,8 +69,10 @@ if(isset($_GET['todo']) && $_GET['todo'] == 'updateInscription')
 
 if(isset($_GET['todo']) && (($_GET['todo'] == 'valider') || ($_GET['todo'] == 'unValider') || ($_GET['todo'] == 'payer') || ($_GET['todo'] == 'unPayer')))
 {
+    // Si on est polytechnique, on a les droits
     if(isset($_SESSION['login']) && $_SESSION['login'] == 'bdspolytechnique')
     {
+        
         echo '1';
         exit(1);
     }

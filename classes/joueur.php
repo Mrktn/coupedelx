@@ -46,11 +46,11 @@ class joueur
     }
 
     // FIXME: téléphone, capitaine
-    public static function insertJoueur($ecoleID, $sportPrimaryKey, $prenom, $nom, $numero, $isCapitaine, $mail)
+    public static function insertJoueur($ecoleID, $sportPrimaryKey, $prenom, $nom, $numero, $isCapitaine, $mail, $licence)
     {
         $dbh = DB::connect();
 
-        $stmt = $dbh->prepare("INSERT INTO joueur (prenom, nom, numero, capitaine, mail, ecole, sport) VALUES(?,?,?,?,?,?,?)");
+        $stmt = $dbh->prepare("INSERT INTO joueur (prenom, nom, numero, capitaine, mail, ecole, sport, licence) VALUES(?,?,?,?,?,?,?,?)");
         $stmt->bindParam(1, $prenom);
         $stmt->bindParam(2, $nom);
         $stmt->bindParam(3, $numero);
@@ -58,6 +58,7 @@ class joueur
         $stmt->bindParam(5, $mail);
         $stmt->bindParam(6, $ecoleID);
         $stmt->bindParam(7, $sportPrimaryKey);
+        $stmt->bindParam(8, $licence);
 
         $stmt->execute();
         $stmt->closeCursor();

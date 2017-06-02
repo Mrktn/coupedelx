@@ -65,7 +65,7 @@ function generateHeader()
                             <div>
                                 <a href='https://www.facebook.com/Bds-Polytechnique-640858446045589'><img src="img/logobds.png" alt="Logo BDS Polytechnique" style="max-width:256px; max-height:144px;width: auto;height: auto;" class="img-responsive center-block"/></a>
                                 <div class="center-block" style="text-align:center">
-                                    <p style="margin:auto; font-style:italic; font-size:11px">« Nous ne sommes pas qu'une équipe, nous sommes toute une armée »</p>
+                                    <p style="margin:auto; font-style:italic; font-size:11px">Nous ne sommes pas qu'une équipe, nous sommes toute une armée</p>
                                 </div>
                             </div>
                         </div>
@@ -74,11 +74,11 @@ function generateHeader()
                         
                     </div>
                     <div class="col-md-4">
-                        <div class="center-block">
-                            <div>
-                                <a href='https://www.facebook.com/Bds-Polytechnique-640858446045589'><img src="img/lcl.png" style="max-width:366px; max-height:144px;width: auto;height: auto;" class="img-responsive center-block"/></a>
+                        <div class="center-block" style="padding-top:30px">
+                            <div class="center-block" style="text-align:center">
+                                <a><img src="img/lcl.png" style="max-width:366px; max-height:144px;width: auto;height: auto;" class="img-responsive center-block"/></a>
                                 <div class="center-block" style="text-align:center">
-                                    <p style="margin:auto; font-style:italic; font-size:15px">En collaboration avec le Crédit lyonnais</p>
+                                    <p style="margin:auto; font-style:italic; font-size:15px; margin-top: 15px">En collaboration avec le Crédit lyonnais</p>
                                 </div>
                             </div>
                         </div>
@@ -189,9 +189,10 @@ function generateNavbar()
 
             foreach($arr as $jk => $arra)
             {
+                // On n'en insère pas plus qu'autorisé !
                 if($cnt <= $currentSport->maxjoueurs)
                 {
-                    joueur::insertJoueur($currEcole->id, $currentSport->id, safeAccess($arra, 'prenom'), safeAccess($arra, 'nom'), $cnt, $cnt == 1, safeAccess($arra, 'mail'));
+                    joueur::insertJoueur($currEcole->id, $currentSport->id, safeAccess($arra, 'prenom'), safeAccess($arra, 'nom'), $cnt, $cnt == 1, safeAccess($arra, 'mail'), safeAccess($arra, 'licence'));
                     $cnt += 1;
                 }
             }
